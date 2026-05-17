@@ -1,0 +1,90 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
+import { 
+  FiLayout, 
+  FiPackage, 
+  FiTag, 
+  FiShoppingBag, 
+  FiUsers, 
+  FiMessageSquare, 
+  FiFileText, 
+  FiPercent, 
+  FiBarChart2, 
+  FiSettings,
+  FiMenu,
+  FiX
+} from 'react-icons/fi'
+
+const adminNavItems = [
+  { href: '/admin/dashboard', label: 'Dashboard', icon: FiLayout },
+  { href: '/admin/products', label: 'Products', icon: FiPackage },
+  { href: '/admin/categories', label: 'Categories', icon: FiTag },
+  { href: '/admin/orders', label: 'Orders', icon: FiShoppingBag },
+  { href: '/admin/users', label: 'Users', icon: FiUsers },
+  { href: '/admin/messages', label: 'Messages', icon: FiMessageSquare },
+  { href: '/admin/blogs', label: 'Blogs', icon: FiFileText },
+  { href: '/admin/coupons', label: 'Coupons', icon: FiPercent },
+  { href: '/admin/analytics', label: 'Analytics', icon: FiBarChart2 },
+  { href: '/admin/settings', label: 'Settings', icon: FiSettings },
+]
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const pathname = usePathname()
+  const { profile } = useAuth()
+
+  if (profile?.role !== 'admin') {
+    return null
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Mobile Sidebar Toggle */}
+      <button
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md"
+      >
+        {sidebarOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+      </button>
+
+      {/* Sidebar */}
+      <aside className={`fixed top-0 left-0 z-40 h-screen w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      }`}>
+        <div className="p-6">
+          <h1 className="text-2xl font-bold text-primary-600">AziziHub</h1>
+          <p className="text-sm text-gray-500">Admin Panel</p>
+        </div>
+        <nav className="mt-6">
+          {adminNavItems.map((item) => {
+            const isActive = pathname === item.href
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className={`flex items-center space-x-3 px-6 py-3 transition-colors ${
+                  isActive
+                    ? 'bg-primary-50 text-primary-600 border-r-4 border-primary-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            )
+          })}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="lg:ml-64 p-8">
+        {children}
+      </main>
+    </div>
+  )
+}

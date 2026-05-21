@@ -99,7 +99,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <Link href={`/product/${product.slug}`}>
         <div className="relative">
-          <div className="relative h-64 w-full overflow-hidden bg-gray-200">
+          <div className="relative h-48 sm:h-64 w-full overflow-hidden bg-gray-200">
             <Image
               src={product.product_images?.[0]?.image_url || '/placeholder.jpg'}
               alt={product.name}
@@ -130,7 +130,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="p-4">
           <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">{product.name}</h3>
           <div className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-primary-600">₨{product.price.toLocaleString()}</span>
+            <span className="text-lg sm:text-xl font-bold text-primary-600">₨{product.price.toLocaleString()}</span>
             {product.compare_price && (
               <span className="text-sm text-gray-400 line-through">₨{product.compare_price.toLocaleString()}</span>
             )}

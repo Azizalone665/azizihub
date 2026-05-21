@@ -57,9 +57,9 @@ export default function FlashDeals() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg h-80 animate-pulse" />
+              <div key={i} className="bg-white rounded-lg h-64 sm:h-80 animate-pulse" />
             ))}
           </div>
         ) : flashProducts.length === 0 ? (
@@ -67,7 +67,7 @@ export default function FlashDeals() {
             <p className="text-gray-500">No flash deals available at the moment.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {flashProducts.map((product, idx) => (
               <motion.div
                 key={product.id}

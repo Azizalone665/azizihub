@@ -46,7 +46,7 @@ export default function HeroSlider() {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
 
   return (
-    <div className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <div className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -73,7 +73,7 @@ export default function HeroSlider() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-4xl md:text-6xl font-bold mb-4"
+                  className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4"
                 >
                   {slides[current].title}
                 </motion.h1>
@@ -81,7 +81,7 @@ export default function HeroSlider() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="text-lg md:text-xl mb-8"
+                  className="text-base sm:text-lg md:text-xl mb-6 md:mb-8"
                 >
                   {slides[current].subtitle}
                 </motion.p>

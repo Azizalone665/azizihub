@@ -112,7 +112,7 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div {...fadeUp} className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
               Shop by Category
             </h2>
             <p className="text-sm md:text-base text-gray-500">Find exactly what you're looking for</p>
@@ -130,14 +130,14 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div {...fadeUp} className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
               Trending Now
             </h2>
             <p className="text-sm md:text-base text-gray-500">Most popular this week</p>
           </motion.div>
           
           {loading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {[...Array(8)].map((_, i) => (
                 <ProductSkeleton key={i} />
               ))}
@@ -147,7 +147,7 @@ export default function Home() {
               <p className="text-gray-500">No products available.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {trendingProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
